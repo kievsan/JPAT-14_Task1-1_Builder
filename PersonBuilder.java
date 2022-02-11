@@ -21,12 +21,7 @@ public class PersonBuilder implements PersonBuilderable {
 
     @Override
     public PersonBuilder setAge(int age) {
-        try {
-            // Возраст недопустимый
-            this.age = age;
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        this.age = age;
         return this;
     }
 
@@ -37,8 +32,12 @@ public class PersonBuilder implements PersonBuilderable {
     }
 
     @Override
-    public Person build() {
+    public Person build()  throws IllegalArgumentException, IllegalStateException {
+        if (name.isEmpty() || surname.isEmpty())
+            throw new IllegalStateException("The necessary data is missing!");
         Person person = new Person(name, surname);
+        if (age < 0)
+            throw new IllegalArgumentException("Unacceptable age!");
         person.age = this.age;
         person.city = this.city;
         return person;

@@ -24,6 +24,16 @@ public class PersonDirectror {
         System.out.println("the hostess there: " + houseWifePerson1);
         System.out.println("the child there: " + daughterPerson1);
 
+        Person headPerson2 = builder
+                .setName("Ostin").setSurname("Next").setAddress("Rostov")
+                .build();
+        Person houseWifePerson2 = headPerson2.newFamilyMemberBuilder()
+                .setName("Anny")
+                .build();
+
+        System.out.println("the head of the family-2: " + headPerson2);
+        System.out.println("the hostess there: " + houseWifePerson2);
+
     }
 
 }
